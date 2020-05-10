@@ -1,0 +1,9 @@
+.popup__line {
+  width: 358px;
+  border: 1px solid #000000;
+}
+@media screen and (max-width: 600px) {
+  .popup__line {
+    width: 186px;
+  }
+}

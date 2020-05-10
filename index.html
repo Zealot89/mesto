@@ -1,22 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./stile.css">
-    <link rel="stylesheet" href="./vendor/normalize.css">
     <title>Mesto</title>
 </head>
 
 <body>
     <div class='page'>
         <header class='header'>
-            <img class='header__logo' src="./images/Vector.svg" alt="logo">
+            <img class='header__logo' src="./images/Vector.svg" alt="Лого">
             <div class="header__line"></div>
         </header>
-        <main class='content'></main>
-        <footer class='footer'></footer>
+        <main class='content'>
+            <section class="profile">
+                <img class="profile__avatar" src="./images/батискаф.jpg" alt="Кусто">
+                <div class="profile__info">
+                    <h1 class="profile__title">Жак-Ив Кусто</h1>
+                    <p class="profile__subtitle">Исследователь океана</p>
+                    <button class="profile__edit-button"></button>
+                </div>
+                <button class="profile__add-button"></button>
+            </section>
+            <section class="popup">
+                <form class="popup__form">
+                    <img class="popup__toggle" src="./images/CloseIcon.png" alt="Закрыть">
+                    <h3 class="popup__title">Редактировать профиль</h3>
+                    <input class="popup__input popup__input_name" placeholder="Имя" tabindex="1" type="text">
+                    <div class="popup__line"></div>
+                    <input class="popup__input popup__input_activiti" placeholder="Род занятий" tabindex="2"
+                        type="text">
+                    <div class="popup__line"></div>
+                    <button class="popup__button">Сохранить</button>
+                </form>
+            </section>
+            <section class="elements">
+                <div class="element">
+                    <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
+                    <h2 class="element__title">Карачаевск</h2>
+                    <button class="element__button"></button>
+                </div>
+                <div class="element">
+                    <img class="element__image" src="./images/4b7223bfed70b366de977ffe5637c863.jpg"
+                        alt="Гусь-Хрустальный">
+                    <h2 class="element__title">Гусь-Хрусталь...</h2>
+                    <button class="element__button"></button>
+                </div>
+                <div class="element">
+                    <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
+                    <h2 class="element__title">Гора Эльбрус</h2>
+                    <button class="element__button"></button>
+                </div>
+                <div class="element">
+                    <img class="element__image" src="./images/dombay.png" alt="Домбай">
+                    <h2 class="element__title">Домбай</h2>
+                    <button class="element__button"></button>
+                </div>
+                <div class="element">
+                    <img class="element__image" src="./images/Vladimir.jpg" alt="Владимир">
+                    <h2 class="element__title">Владимир</h2>
+                    <button class="element__button"></button>
+                </div>
+                <div class="element">
+                    <img class="element__image" src="./images/Pokrov.jpg" alt="Покров">
+                    <h2 class="element__title">Покров</h2>
+                    <button class="element__button"></button>
+                </div>
+            </section>
+        </main>
+        <footer class='footer'>
+            <p>&copy;2020 Mesto Russia</p>
+        </footer>
     </div>
     <script src="./script.js"></script>
 </body>

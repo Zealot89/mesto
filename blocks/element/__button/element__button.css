@@ -1,0 +1,18 @@
+.element__button {
+  background-image: url(../../../images/Group.png);
+  min-width: 23.13px;
+  height: 20.76px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: auto;
+  margin-right: 22.24px;
+  margin-left: auto;
+  margin-bottom: 29.87px;
+  border: none;
+  background-color: white;
+  padding: 0;
+  outline: none;
+}
+.element__button:checked {
+  border: none;
+}
