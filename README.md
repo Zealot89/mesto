@@ -9,4 +9,4 @@
 
 ### Ссылки
 
--[GitHub-Pages](-[GitHub-Pages](https://zealot89.github.io/mesto/index.html)
+-[GitHub-Pages](https://zealot89.github.io/mesto/index.html)
