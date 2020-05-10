@@ -1,5 +1,5 @@
-@import url("./blocks/header/__line/header__line.css");
-@import url("./blocks/header/__logo/header__logo.css");
+@import url("./__line/header__line.css");
+@import url("./__logo/header__logo.css");
 .header {
   max-width: 882px;
   min-height: 74px;
