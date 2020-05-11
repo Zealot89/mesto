@@ -2,8 +2,7 @@
   margin: 0;
   margin-bottom: 0;
   margin-right: 16px;
-  min-width: 295px;
-  max-width: 450px;
+  width: 295px;
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
@@ -19,7 +18,7 @@
     font-size: 27px;
     line-height: 56px;
     text-align: center;
-    min-width: 201px;
+    width: 201px;
     margin-right: 0;
   }
 }

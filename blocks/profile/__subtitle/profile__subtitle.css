@@ -7,10 +7,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 450px;
+  width: 295px;
 }
 @media screen and (max-width: 620px) {
   .profile__subtitle {
+    width: 201px;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

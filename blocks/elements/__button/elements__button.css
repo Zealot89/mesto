@@ -1,4 +1,4 @@
-.element__button {
+.elements__button {
   background-image: url(../../../images/Group.png);
   min-width: 23.13px;
   height: 20.76px;
@@ -13,6 +13,7 @@
   padding: 0;
   outline: none;
 }
-.element__button:checked {
-  border: none;
+.elements__button:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }

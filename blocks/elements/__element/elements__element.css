@@ -1,7 +1,4 @@
-@import url("./__button/element__button.css");
-@import url("./__image/element__image.css");
-@import url("./__title/element__title.css");
-.element {
+.elements__element {
   background-size: contain;
   background-repeat: no-repeat;
   max-width: 282px;

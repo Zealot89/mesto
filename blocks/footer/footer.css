@@ -6,9 +6,17 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
-
   color: #545454;
 }
+@media screen and (max-width: 900px) {
+  .footer {
+    max-width: 600px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .footer {
+    max-width: 282px;
+  }
 @media screen and (max-width: 320px) {
   .footer {
     max-width: 282px;
