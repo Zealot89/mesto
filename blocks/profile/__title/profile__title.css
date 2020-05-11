@@ -3,12 +3,16 @@
   margin-bottom: 0;
   margin-right: 16px;
   min-width: 295px;
+  max-width: 450px;
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
   line-height: 56px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 620px) {
   .profile__title {
     font-style: normal;
     font-weight: 500;

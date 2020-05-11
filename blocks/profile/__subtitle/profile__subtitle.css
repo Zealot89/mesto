@@ -4,8 +4,12 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 450px;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 620px) {
   .profile__subtitle {
     font-style: normal;
     font-weight: normal;
