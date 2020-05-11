@@ -12,7 +12,6 @@
     <div class='page'>
         <header class='header'>
             <img class='header__logo' src="./images/Vector.svg" alt="Лого">
-            <div class="header__line"></div>
         </header>
         <main class='content'>
             <section class="profile">
@@ -20,59 +19,57 @@
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
                     <p class="profile__subtitle">Исследователь океана</p>
-                    <button class="profile__edit-button"></button>
+                    <button class="profile__edit-button" type="button"></button>
                 </div>
-                <button class="profile__add-button"></button>
+                <button class="profile__add-button" type="button"></button>
             </section>
-            <section class="popup">
-                <form class="popup__form">
-                    <img class="popup__toggle" src="./images/CloseIcon.png" alt="Закрыть">
-                    <h3 class="popup__title">Редактировать профиль</h3>
-                    <input class="popup__input popup__input_name" placeholder="Имя" tabindex="1" type="text">
-                    <div class="popup__line"></div>
-                    <input class="popup__input popup__input_activiti" placeholder="Род занятий" tabindex="2"
-                        type="text">
-                    <div class="popup__line"></div>
-                    <button class="popup__button">Сохранить</button>
-                </form>
-            </section>
-            <section class="elements">
-                <div class="element">
+            <ul class="elements">
+                <li class="element">
                     <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
                     <h2 class="element__title">Карачаевск</h2>
-                    <button class="element__button"></button>
-                </div>
-                <div class="element">
+                    <button class="element__button" type="button"></button>
+                </li>
+                <li class="element">
                     <img class="element__image" src="./images/4b7223bfed70b366de977ffe5637c863.jpg"
                         alt="Гусь-Хрустальный">
                     <h2 class="element__title">Гусь-Хрусталь...</h2>
-                    <button class="element__button"></button>
-                </div>
-                <div class="element">
+                    <button class="element__button" type="button"></button>
+                </li>
+                <li class="element">
                     <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
                     <h2 class="element__title">Гора Эльбрус</h2>
-                    <button class="element__button"></button>
-                </div>
-                <div class="element">
+                    <button class="element__button" type="button"></button>
+                </li>
+                <li class="element">
                     <img class="element__image" src="./images/dombay.png" alt="Домбай">
                     <h2 class="element__title">Домбай</h2>
-                    <button class="element__button"></button>
-                </div>
-                <div class="element">
+                    <button class="element__button" type="button"></button>
+                </li>
+                <li class="element">
                     <img class="element__image" src="./images/Vladimir.jpg" alt="Владимир">
                     <h2 class="element__title">Владимир</h2>
-                    <button class="element__button"></button>
-                </div>
-                <div class="element">
+                    <button class="element__button" type="button"></button>
+                </li>
+                <li class="element">
                     <img class="element__image" src="./images/Pokrov.jpg" alt="Покров">
                     <h2 class="element__title">Покров</h2>
-                    <button class="element__button"></button>
-                </div>
-            </section>
+                    <button class="element__button" type="button"></button>
+                </li>
+            </ul>
         </main>
         <footer class='footer'>
             <p>&copy;2020 Mesto Russia</p>
         </footer>
+        <section class="popup">
+            <form class="popup__form">
+                <button class="popup__toggle" src="./images/CloseIcon.png" type="button"></button>
+                <h3 class="popup__title">Редактировать профиль</h3>
+                <input class="popup__input popup__input_name" placeholder="Имя" name="name" tabindex="1" type="text">
+                <input class="popup__input popup__input_activiti" placeholder="Род занятий" name="activity" tabindex="2"
+                    type="text">
+                <button class="popup__button" type="button">Сохранить</button>
+            </form>
+        </section>
     </div>
     <script src="./script.js"></script>
 </body>

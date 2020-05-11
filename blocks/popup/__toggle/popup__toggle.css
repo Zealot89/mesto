@@ -1,8 +1,17 @@
 .popup__toggle {
+  background-image: url(../../../images/CloseIcon.png);
+  width: 56.7px;
+    height: 56.7px;
     position: absolute;
     top: -45px;
     right: -45px;
     cursor: pointer;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    padding: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
   .popup__toggle:hover {
     opacity: 0.6;
@@ -10,7 +19,8 @@
   }
   @media screen and (max-width: 600px) {
       .popup__toggle {
-          width: 30px;
-          top: -22px;
-          right: -22px;
+        height: 37px;
+        width: 37px;
+        top: -28px;
+        right: -29px;
       }
