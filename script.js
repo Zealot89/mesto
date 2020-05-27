@@ -58,29 +58,31 @@ const popupReview = document.querySelector(".popup_review");
 let popupSubtitle = document.querySelector(".popup__subtitle");
 let popupImage = document.querySelector(".popup__image");
 
-function popupReviewOpenClose() {
-  popupReview.classList.toggle("popup_active");
-}
 //добавление карточек из массива
 initialCards.forEach(function (i) {
   const listItem = item.cloneNode(true);
   listItem.querySelector(".elements__image_add").src = i.link;
   listItem.querySelector(".elements__title_add").textContent = i.name;
-
+  //лайки имеющихся карточек
   listItem
     .querySelector(".elements__button")
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("elements__button_active");
     });
+  //удаление имеющихся карточек
   const elementCard = listItem.querySelector(".elements__element");
   const deleteButton = elementCard.querySelector(".elements__delete-button");
   deleteButton.addEventListener("click", function () {
     const listItem = deleteButton.closest(".elements__element");
-
     listItem.remove();
   });
-  list.append(listItem);
+  list.append(listItem); //добавление в конец списка
 });
+// открытие-закрытие попапа с картинкой
+function popupReviewOpenClose() {
+  popupReview.classList.toggle("popup_active");
+}
+//заполнение попапа с картинкой для уже имеющихся карточек
 const card = list.querySelector(".elements__element");
 let cardImage = document.querySelectorAll(".elements__image");
 let i = cardImage.length;
@@ -95,7 +97,7 @@ while (i--)
   });
 //функция добавления новой карточки
 function addItem() {
-  const listItem = item.cloneNode(true);
+  const listItem = item.cloneNode(true); //клонирование из temlate со всем содержимым
   listItem.querySelector(".elements__image_add").src = linkInput.value;
   listItem.querySelector(".elements__title_add").textContent = placeInput.value;
 
@@ -104,13 +106,14 @@ function addItem() {
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("elements__button_active");
     });
-
+  //удаление новой карточки
   const elementCard = listItem.querySelector(".elements__element");
   const deleteButton = elementCard.querySelector(".elements__delete-button");
   deleteButton.addEventListener("click", function () {
     const listItem = deleteButton.closest(".elements__element");
     listItem.remove();
   });
+  //заполнение попапа с картинкой из новой карточки
   listItem
     .querySelector(".elements__image")
     .addEventListener("click", function (evt) {
@@ -121,7 +124,7 @@ function addItem() {
         ".elements__title"
       ).textContent;
     });
-  list.prepend(listItem);
+  list.prepend(listItem); //добавление карточки в начало списка
 }
 // открытие-закрытие попапа профиля
 function openClosePopup() {
