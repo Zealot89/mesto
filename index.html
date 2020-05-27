@@ -25,38 +25,6 @@
             </section>
             <section class="elements">
                 <ul class="elements__list">
-                    <li class="elements__element">
-                        <img class="elements__image" src="./images/kirill-pershin-1088404-unsplash.jpg"
-                            alt="Карачаевск">
-                        <h2 class="elements__title">Карачаевск</h2>
-                        <button class="elements__button" type="button"></button>
-                    </li>
-                    <li class="elements__element">
-                        <img class="elements__image" src="./images/4b7223bfed70b366de977ffe5637c863.jpg"
-                            alt="Гусь-Хрустальный">
-                        <h2 class="elements__title">Гусь-Хрустальный</h2>
-                        <button class="elements__button" type="button"></button>
-                    </li>
-                    <li class="elements__element">
-                        <img class="elements__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-                        <h2 class="elements__title">Гора Эльбрус</h2>
-                        <button class="elements__button" type="button"></button>
-                    </li>
-                    <li class="elements__element">
-                        <img class="elements__image" src="./images/dombay.png" alt="Домбай">
-                        <h2 class="elements__title">Домбай</h2>
-                        <button class="elements__button" type="button"></button>
-                    </li>
-                    <li class="elements__element">
-                        <img class="elements__image" src="./images/Vladimir.jpg" alt="Владимир">
-                        <h2 class="elements__title">Владимир</h2>
-                        <button class="elements__button" type="button"></button>
-                    </li>
-                    <li class="elements__element">
-                        <img class="elements__image" src="./images/Pokrov.jpg" alt="Покров">
-                        <h2 class="elements__title">Покров</h2>
-                        <button class="elements__button" type="button"></button>
-                    </li>
                 </ul>
             </section>
         </main>
@@ -73,7 +41,34 @@
                 <button class="popup__button" type="button">Сохранить</button>
             </form>
         </section>
+        <section class="popup popup_add-place">
+            <form class="popup__form popup__form_add">
+                <button class="popup__toggle popup__toggle_add" type="button"></button>
+                <h3 class="popup__title">Новое место</h3>
+                <input class="popup__input popup__input_place" placeholder="Название" name="name" tabindex="1"
+                    type="text">
+                <input class="popup__input popup__input_link" placeholder="Ссылка на картинку" name="activity"
+                    tabindex="2" type="text">
+                <button class="popup__button popup__button_insert" type="button">Создать</button>
+            </form>
+        </section>
+        <section class="popup popup_review">
+            <figure class="popup__figure">
+                <button class="popup__toggle  popup__toggle_review" type="button"></button>
+                <img class="popup__image" src="." alt="Картинка">
+                <figcaption class="popup__subtitle"></figcaption>
+            </figure>
+        </section>
     </div>
+    <template id="item">
+        <li class="elements__element elements__element_add">
+            <button class="elements__delete-button" type="button"></button>
+            <img class="elements__image elements__image_add" src="" alt="Картинка">
+            <h2 class="elements__title elements__title_add"></h2>
+            <button class="elements__button" type="button"></button>
+
+        </li>
+    </template>
     <script src="./script.js"></script>
 </body>
 

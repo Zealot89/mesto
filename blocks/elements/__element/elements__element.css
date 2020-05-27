@@ -1,4 +1,5 @@
 .elements__element {
+  position: relative;
   background-size: contain;
   background-repeat: no-repeat;
   max-width: 282px;
@@ -9,4 +10,7 @@
   border-radius: 4%;
   flex-wrap: wrap;
   overflow: hidden;
+}
+.elements__element:hover {
+  cursor: pointer;
 }

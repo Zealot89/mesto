@@ -1,0 +1,28 @@
+.popup__figure {
+  width: max-content;
+  height: 550px;
+  margin: auto;
+  margin-top: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+@media screen and (max-width: 890px) {
+  .popup__figure {
+    height: 430px;
+  }
+}
+@media screen and (max-width: 707px) {
+  .popup__figure {
+    height: 330px;
+  }
+}
+@media screen and (max-width: 620px) {
+  .popup__figure {
+    margin-top: 136px;
+    height: 325px;
+    width: 240px;
+  }
+}
