@@ -62,6 +62,7 @@ let popupImage = document.querySelector(".popup__image");
 initialCards.forEach(function (i) {
   const listItem = item.cloneNode(true);
   listItem.querySelector(".elements__image_add").src = i.link;
+  listItem.querySelector(".elements__image_add").alt = i.name;
   listItem.querySelector(".elements__title_add").textContent = i.name;
   //лайки имеющихся карточек
   listItem
@@ -99,6 +100,7 @@ while (i--)
 function addItem() {
   const listItem = item.cloneNode(true); //клонирование из temlate со всем содержимым
   listItem.querySelector(".elements__image_add").src = linkInput.value;
+  listItem.querySelector(".elements__image_add").alt = placeInput.value;
   listItem.querySelector(".elements__title_add").textContent = placeInput.value;
 
   listItem //лайк новой карточки
