@@ -6,6 +6,6 @@
 @import url("./blocks/header/header.css");
 @import url("./blocks/page/page.css");
 @import url("./blocks/popup/popup.css");
-@import url("./blocks/popup_active/popup_active.css");
-@import url("./__review/popup_review.css");
+@import url("./blocks/popup/__review/popup_review.css");
 @import url("./blocks/profile/profile.css");
+@import url("./blocks/popup/_active/popup_active.css");

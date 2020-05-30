@@ -36,135 +36,101 @@ const profileInfo = profile.querySelector(".profile__info");
 const editButton = profileInfo.querySelector(".profile__edit-button");
 const popup = document.querySelector(".popup");
 const popupToggle = popup.querySelector(".popup__toggle");
-
-let profileName = profileInfo.querySelector(".profile__title");
-let profileActiviti = profileInfo.querySelector(".profile__subtitle");
-let nameInput = popup.querySelector(".popup__input_name");
-let activitiInput = popup.querySelector(".popup__input_activiti");
-let popupForm = popup.querySelector(".popup__form");
+const profileName = profileInfo.querySelector(".profile__title");
+const profileActiviti = profileInfo.querySelector(".profile__subtitle");
+const nameInput = popup.querySelector(".popup__input_name");
+const activitiInput = popup.querySelector(".popup__input_activiti");
+const popupForm = popup.querySelector(".popup__form");
 const saveButton = popupForm.querySelector(".popup__button");
 const addButton = document.querySelector(".profile__add-button");
 const addPopup = document.querySelector(".popup_add-place");
-let placeInput = document.querySelector(".popup__input_place");
-let linkInput = document.querySelector(".popup__input_link");
+const placeInput = document.querySelector(".popup__input_place");
+const linkInput = document.querySelector(".popup__input_link");
 const insertButton = document.querySelector(".popup__button_insert");
 const toggleCloseButton = document.querySelector(".popup__toggle_add");
 const addCardPopup = document.querySelector(".popup__form_add");
 const item = document.querySelector("#item").content;
 const list = document.querySelector(".elements__list");
-
+const closeButtonReview = document.querySelector(".popup__toggle_review");
 const popupReview = document.querySelector(".popup_review");
-
-let popupSubtitle = document.querySelector(".popup__subtitle");
-let popupImage = document.querySelector(".popup__image");
-
-//добавление карточек из массива
-initialCards.forEach(function (i) {
-  const listItem = item.cloneNode(true);
-  listItem.querySelector(".elements__image_add").src = i.link;
-  listItem.querySelector(".elements__image_add").alt = i.name;
-  listItem.querySelector(".elements__title_add").textContent = i.name;
-  //лайки имеющихся карточек
-  listItem
-    .querySelector(".elements__button")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("elements__button_active");
-    });
-  //удаление имеющихся карточек
-  const elementCard = listItem.querySelector(".elements__element");
-  const deleteButton = elementCard.querySelector(".elements__delete-button");
-  deleteButton.addEventListener("click", function () {
-    const listItem = deleteButton.closest(".elements__element");
-    listItem.remove();
-  });
-  list.append(listItem); //добавление в конец списка
-});
-// открытие-закрытие попапа с картинкой
-function popupReviewOpenClose() {
-  popupReview.classList.toggle("popup_active");
-}
-//заполнение попапа с картинкой для уже имеющихся карточек
 const card = list.querySelector(".elements__element");
-let cardImage = document.querySelectorAll(".elements__image");
-let i = cardImage.length;
-while (i--)
-  cardImage[i].addEventListener("click", (evt) => {
-    popupReviewOpenClose();
-    const listItem = evt.target.closest(".elements__element");
-    popupImage.src = listItem.querySelector(".elements__image").src;
-    popupSubtitle.textContent = listItem.querySelector(
-      ".elements__title"
-    ).textContent;
-  });
-//функция добавления новой карточки
-function addItem() {
-  const listItem = item.cloneNode(true); //клонирование из temlate со всем содержимым
-  listItem.querySelector(".elements__image_add").src = linkInput.value;
-  listItem.querySelector(".elements__image_add").alt = placeInput.value;
-  listItem.querySelector(".elements__title_add").textContent = placeInput.value;
+const inputFieldLinks = document.querySelector(".popup__input_link"),
+  entryFieldLocations = document.querySelector(".popup__input_place");
 
-  listItem //лайк новой карточки
-    .querySelector(".elements__button")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("elements__button_active");
-    });
+const popupSubtitle = document.querySelector(".popup__subtitle");
+const popupImage = document.querySelector(".popup__image");
+
+function openClosePopups(popupElement) {
+  popupElement.classList.toggle("popup_active");
+}
+function handleLikeButtonClick(evt) {
+  evt.target.classList.toggle("elements__button_active");
+}
+
+//функция добавления новой карточки
+function createCard(name, link) {
+  const listItem = item.cloneNode(true); //клонирование из temlate со всем содержимым
+  const cardPhoto = listItem.querySelector(".elements__image_add");
+  const cardName = listItem.querySelector(".elements__title_add");
+  cardPhoto.src = link;
+  cardPhoto.alt = name;
+  cardName.textContent = name;
+  const likeButton = listItem.querySelector(".elements__button");
+  likeButton.addEventListener("click", handleLikeButtonClick);
   //удаление новой карточки
   const elementCard = listItem.querySelector(".elements__element");
   const deleteButton = elementCard.querySelector(".elements__delete-button");
-  deleteButton.addEventListener("click", function () {
+  function handleDeleteButtonClick() {
     const listItem = deleteButton.closest(".elements__element");
     listItem.remove();
-  });
+  }
+  deleteButton.addEventListener("click", handleDeleteButtonClick);
   //заполнение попапа с картинкой из новой карточки
-  listItem
-    .querySelector(".elements__image")
-    .addEventListener("click", function (evt) {
-      popupReviewOpenClose();
-      const listItem = evt.target.closest(".elements__element");
-      popupImage.src = listItem.querySelector(".elements__image").src;
-      popupSubtitle.textContent = listItem.querySelector(
-        ".elements__title"
-      ).textContent;
-    });
-  list.prepend(listItem); //добавление карточки в начало списка
+  const cardImage = listItem.querySelector(".elements__image");
+  const cardTitle = listItem.querySelector(".elements__title");
+
+  function completion(evt) {
+    const listItem = evt.target.closest(".elements__element");
+    popupImage.src = cardImage.src;
+    popupSubtitle.textContent = cardTitle.textContent;
+    openClosePopups(popupReview);
+  }
+  cardImage.addEventListener("click", completion);
+  return listItem; //возвращение карточки
 }
-// открытие-закрытие попапа профиля
-function openClosePopup() {
-  popup.classList.toggle("popup_active");
+initialCards.forEach((item) => list.append(createCard(item.name, item.link)));
+
+function addItem() {
+  list.prepend(createCard(entryFieldLocations.value, inputFieldLinks.value));
+}
+function formFilling() {
   if (popup.classList.contains("popup_active")) {
     nameInput.value = profileName.textContent;
     activitiInput.value = profileActiviti.textContent;
   }
 }
-// открытие-закрытие попапа добавления карточек
-function openCloseAddPopup() {
-  addPopup.classList.toggle("popup_active");
-}
-
-function formSubmitHand(evt) {
+function addCardformSubmitHandler(evt) {
   evt.preventDefault();
   addItem();
-  linkInput.value = document.querySelector(".popup__input_link").textContent;
-  placeInput.value = document.querySelector(".popup__input_place").textContent;
-  openCloseAddPopup();
+  linkInput.value = inputFieldLinks.textContent;
+  placeInput.value = entryFieldLocations.textContent;
+  openClosePopups(addPopup);
 }
 // заполнение профиля из полей ввода
 function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileActiviti.textContent = activitiInput.value;
-  openClosePopup();
+  openClosePopups(popup);
 }
-//закрытие попапа с картинкой кнопкой закрыть
-const closeButtonReview = document
-  .querySelector(".popup__toggle_review")
-  .addEventListener("click", popupReviewOpenClose);
 
-editButton.addEventListener("click", openClosePopup);
-addCardPopup.addEventListener("submit", formSubmitHand);
+closeButtonReview.addEventListener("click", () => openClosePopups(popupReview));
+editButton.addEventListener("click", () => openClosePopups(popup));
+editButton.addEventListener("click", formFilling);
+addCardPopup.addEventListener("submit", addCardformSubmitHandler);
 popupForm.addEventListener("submit", formSubmitHandler);
-popupToggle.addEventListener("click", openClosePopup);
-saveButton.addEventListener("click", formSubmitHandler);
-addButton.addEventListener("click", openCloseAddPopup);
-insertButton.addEventListener("click", formSubmitHand);
-toggleCloseButton.addEventListener("click", openCloseAddPopup);
+popupToggle.addEventListener("click", () => openClosePopups(popup));
+saveButton.addEventListener("submit", formSubmitHandler);
+addButton.addEventListener("click", () => openClosePopups(addPopup));
+insertButton.addEventListener("submit", addCardformSubmitHandler);
+toggleCloseButton.addEventListener("click", () => openClosePopups(addPopup));
