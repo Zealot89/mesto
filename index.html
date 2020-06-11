@@ -32,12 +32,19 @@
             <p>&copy;2020 Mesto Russia</p>
         </footer>
         <section class="popup">
-            <form class="popup__form">
+            <form class="popup__form popup__form_profile">
                 <button class="popup__toggle" type="button"></button>
                 <h3 class="popup__title">Редактировать профиль</h3>
-                <input class="popup__input popup__input_name" placeholder="Имя" name="name" tabindex="1" type="text">
-                <input class="popup__input popup__input_activiti" placeholder="Род занятий" name="activity" tabindex="2"
-                    type="text">
+                <label class="popup__input-wrapper">
+                    <input class="popup__input popup__input_name " id="name" placeholder="Имя" name="name" tabindex="1"
+                        minlength="2" maxlength="40" required type="text">
+                    <span class="popup__error" id="name-error"></span>
+                </label>
+                <label class="popup__input-wrapper">
+                    <input class="popup__input popup__input_activiti" id="activiti" placeholder="Род занятий"
+                        name="activity" tabindex="2" type="text" minlength="2" maxlength="200" required>
+                    <span class="popup__error" id="activiti-error"></span>
+                </label>
                 <button class="popup__button">Сохранить</button>
             </form>
         </section>
@@ -45,11 +52,17 @@
             <form class="popup__form popup__form_add">
                 <button class="popup__toggle popup__toggle_add" type="button"></button>
                 <h3 class="popup__title">Новое место</h3>
-                <input class="popup__input popup__input_place" placeholder="Название" name="name" tabindex="1"
-                    type="text">
-                <input class="popup__input popup__input_link" placeholder="Ссылка на картинку" name="activity"
-                    tabindex="2" type="text">
-                <button class="popup__button popup__button_insert">Создать</button>
+                <label class="popup__input-wrapper">
+                    <input class="popup__input popup__input_place" id="name-card" placeholder="Название" name="name"
+                        tabindex="1" type="text" minlength="1" maxlength="30" required>
+                    <span class="popup__error" id="name-card-error"></span>
+                </label>
+                <label class="popup__input-wrapper">
+                    <input class="popup__input popup__input_link" id="link" placeholder="Ссылка на картинку"
+                        name="activity" tabindex="2" type="url" required>
+                    <span class="popup__error" id="link-error"></span>
+                </label>
+                <button class="popup__button popup__button_insert popup__button_disabled">Создать</button>
             </form>
         </section>
         <section class="popup popup_review">
@@ -66,10 +79,10 @@
             <img class="elements__image elements__image_add" src="" alt="Картинка">
             <h2 class="elements__title elements__title_add"></h2>
             <button class="elements__button" type="button"></button>
-
         </li>
     </template>
-    <script src="./script.js"></script>
+    <script src="./scripts/validate.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
 
 </html>

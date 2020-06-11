@@ -9,6 +9,11 @@
 @import url("./__figure/popup__figure.css");
 @import url("./__image/popup__image.css");
 @import url("./__subtitle/popup__subtitle.css");
+@import url("./__input-wrapper/popup__input-wrapper.css");
+@import url("./__input/_type_error/popup__input_type_error.css");
+@import url("./__button/_disabled/popup__button_disabled.css");
+@import url("./__error/popup__error.css");
+@import url("./__error/_visible/popup__error_visible.css");
 
 .popup {
   width: 100%;
@@ -17,8 +22,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  transition: opacity 1s ease-out;
-  opacity: 0;
   visibility: hidden;
   opacity: 0;
   transition: all 0.5s ease-in-out;
