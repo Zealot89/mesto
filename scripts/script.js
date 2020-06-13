@@ -83,7 +83,6 @@ function closePopups(popupElement) {
   popupElement.removeEventListener("click", clickOverlay);
   popupElement.removeEventListener("submit", formSubmitHandler);
 }
-
 //закрытие попапа кликом на оверлей
 function clickOverlay(evt) {
   if (evt.target.matches(".popup_image"))
