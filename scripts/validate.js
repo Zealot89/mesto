@@ -6,12 +6,26 @@ const obj = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
 };
+// отображение ошибок валидации
+function handleInput(evt, inputErrorClass, errorClass) {
+  const input = evt.target;
+  const error = document.querySelector(`#${input.id}-error`);
+  if (input.checkValidity()) {
+    input.classList.remove(inputErrorClass);
+    error.textContent = "";
+    error.classList.remove(errorClass);
+  } else {
+    input.classList.add(inputErrorClass);
+    error.textContent = input.validationMessage;
+    error.classList.add(errorClass);
+  }
+}
 
 function enableValidation(option) {
-  const formElement = Array.from(
+  const formElements = Array.from(
     document.querySelectorAll(option.formSelector)
   );
-  formElement.forEach((formElement) => {
+  formElements.forEach((formElement) => {
     const inputElements = Array.from(
       formElement.querySelectorAll(option.inputSelector)
     );
@@ -28,24 +42,10 @@ function enableValidation(option) {
     //слушатель, блокирующий/разблокирующий кнопку формы в зависимости от валидности ее полей.
     formElement.addEventListener("input", () => {
       const isFormValid = formElement.checkValidity();
-      //submitButton.disabled = !isFormValid;
+      submitButton.disabled = !isFormValid;
       submitButton.classList.toggle(option.inactiveButtonClass, !isFormValid);
     });
   });
-}
-// отображение ошибок валидации
-function handleInput(evt, inputErrorClass, errorClass) {
-  const input = evt.target;
-  const error = document.querySelector(`#${input.id}-error`);
-  if (input.checkValidity()) {
-    input.classList.remove(inputErrorClass);
-    error.textContent = "";
-    error.classList.remove(errorClass);
-  } else {
-    input.classList.add(inputErrorClass);
-    error.textContent = input.validationMessage;
-    error.classList.add(errorClass);
-  }
 }
 
 //enableValidation(obj);

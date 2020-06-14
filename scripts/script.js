@@ -60,12 +60,12 @@ const inputFieldLinks = document.querySelector(".popup__input_link"),
 const popupSubtitle = document.querySelector(".popup__subtitle");
 const popupImage = document.querySelector(".popup__image");
 
-// закрытие попапа по нажатию Esc
-function pressEsc(evt) {
-  const popupOpened = document.querySelector(".popup_active");
-  if (evt.keyCode === 27) {
-    closePopups(popupOpened);
-  }
+// заполнение профиля из полей ввода
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileActiviti.textContent = activitiInput.value;
+  closePopups(popup);
 }
 //открытие попапов с размещением слушателей
 function openPopups(popupElement) {
@@ -75,6 +75,7 @@ function openPopups(popupElement) {
   popupElement.addEventListener("click", clickOverlay);
   popupElement.addEventListener("submit", formSubmitHandler);
 }
+
 //закрытие попапов со снятием слушателей
 function closePopups(popupElement) {
   popupElement.classList.remove("popup_active");
@@ -83,6 +84,15 @@ function closePopups(popupElement) {
   popupElement.removeEventListener("click", clickOverlay);
   popupElement.removeEventListener("submit", formSubmitHandler);
 }
+
+// закрытие попапа по нажатию Esc
+function pressEsc(evt) {
+  const popupOpened = document.querySelector(".popup_active");
+  if (evt.keyCode === 27) {
+    closePopups(popupOpened);
+  }
+}
+
 //закрытие попапа кликом на оверлей
 function clickOverlay(evt) {
   if (evt.target.matches(".popup_image"))
@@ -95,8 +105,8 @@ function handleLikeButtonClick(evt) {
 }
 // удаление карточек
 function handleDeleteButtonClick(evt) {
-  const list = evt.target.closest(".elements__element");
-  list.remove();
+  const elementlist = evt.target.closest(".elements__element");
+  elementlist.remove();
 }
 //функция добавления новой карточки
 function createCard(name, link) {
@@ -116,7 +126,7 @@ function createCard(name, link) {
   const cardImage = listItem.querySelector(".elements__image");
   const cardTitle = listItem.querySelector(".elements__title");
   function completion(evt) {
-    const listItem = evt.target.closest(".elements__element");
+    evt.target.closest(".elements__element");
     popupImage.src = cardImage.src;
     popupSubtitle.textContent = cardTitle.textContent;
     openPopups(popupReview);
@@ -124,7 +134,7 @@ function createCard(name, link) {
   cardImage.addEventListener("click", completion);
   return listItem; //возвращение карточки
 }
-initialCards.forEach((item) => list.append(createCard(item.name, item.link)));
+initialCards.forEach((card) => list.append(createCard(card.name, card.link)));
 //добавление карточки
 function addItem() {
   list.prepend(createCard(entryFieldLocations.value, inputFieldLinks.value));
@@ -145,14 +155,6 @@ function addCardformSubmitHandler(evt) {
   linkInput.value = inputFieldLinks.textContent;
   placeInput.value = entryFieldLocations.textContent;
   closePopups(addPopup);
-}
-
-// заполнение профиля из полей ввода
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileActiviti.textContent = activitiInput.value;
-  closePopups(popup);
 }
 
 // разномастные слушатели
