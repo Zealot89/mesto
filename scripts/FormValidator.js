@@ -1,11 +1,3 @@
-export const obj = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-};
 export default class FormValidator {
   constructor(obj, formSelector) {
     this._formSelector = formSelector;
@@ -26,79 +18,53 @@ export default class FormValidator {
       evt.preventDefault();
     });
     //Блокируем кнопку после открытия попапа
-    this._lockUnlockButton(inputs, submitButton, this._inactiveButtonClass);
+    this._toggleButtonState(inputs, submitButton, this._inactiveButtonClass);
 
     inputs.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         //Проверяем валидность введенных данных
-        this._checkInputValidity(
-          this._formSelector,
-          inputElement,
-          inputElement.validationMessage,
-          this._inputErrorClass,
-          this._errorClass
-        );
+        this._checkInputValidity(inputElement);
         //Блокировка/разблокировка кнопки
-        this._lockUnlockButton(inputs, submitButton, this._inactiveButtonClass);
+        this._toggleButtonState(
+          inputs,
+          submitButton,
+          this._inactiveButtonClass
+        );
       });
       //скрываем ошибки
-      this._hideError(
-        this._formSelector,
-        inputElement,
-        this._inputErrorClass,
-        this._errorClass
-      );
+      this._hideError(inputElement);
     });
   }
 
   //Проверяем валидность полей ввода
-  _checkInputValidity(
-    formSelector,
-    inputElement,
-    errorMessage,
-    inputErrorClass,
-    errorClass
-  ) {
+  _checkInputValidity(inputElement) {
     if (!inputElement.checkValidity())
-      this._unhideError(
-        formSelector,
-        inputElement,
-        errorMessage,
-        inputErrorClass,
-        errorClass
-      );
-    else
-      this._hideError(formSelector, inputElement, inputErrorClass, errorClass);
+      this._showInputError(inputElement, inputElement.validationMessage);
+    else this._hideError(inputElement);
   }
 
   //Скрываем ошибку
-  _hideError(formSelector, inputElement, inputErrorClass, errorClass) {
-    const errorElement = formSelector.querySelector(
+  _hideError(inputElement) {
+    const errorElement = this._formSelector.querySelector(
       `#${inputElement.id}-error`
     );
 
-    inputElement.classList.remove(inputErrorClass);
-    errorElement.classList.remove(errorClass);
+    inputElement.classList.remove(this._inputErrorClass);
+    errorElement.classList.remove(this._errorClass);
     errorElement.textContent = "";
   }
   //Показываем ошибку
-  _unhideError(
-    formSelector,
-    inputElement,
-    errorMessage,
-    inputErrorClass,
-    errorClass
-  ) {
-    const errorElement = formSelector.querySelector(
+  _showInputError(inputElement, errorMessage) {
+    const errorElement = this._formSelector.querySelector(
       `#${inputElement.id}-error`
     );
 
-    inputElement.classList.add(inputErrorClass);
+    inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add(errorClass);
+    errorElement.classList.add(this._errorClass);
   }
   //Блокируем/разблокируем кнопку
-  _lockUnlockButton(inputs, buttonElement, buttonError) {
+  _toggleButtonState(inputs, buttonElement, buttonError) {
     if (this._inputInvalid(inputs)) {
       buttonElement.classList.add(buttonError);
       buttonElement.setAttribute("disabled", true);
