@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+
     <title>Mesto</title>
 </head>
 
@@ -12,10 +12,12 @@
     <div class='page'>
         <header class='header'>
             <img class='header__logo' src="./images/Vector.svg" alt="Лого">
+
         </header>
         <main class='content'>
             <section class="profile">
                 <img class="profile__avatar" src="./images/батискаф.jpg" alt="Кусто">
+
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
                     <p class="profile__subtitle">Исследователь океана</p>
@@ -45,7 +47,7 @@
                         name="activity" tabindex="2" type="text" minlength="2" maxlength="200" required>
                     <span class="popup__error" id="activiti-error"></span>
                 </label>
-                <button class="popup__button">Сохранить</button>
+                <button type="submit" class="popup__button">Сохранить</button>
             </form>
         </section>
         <section class="popup popup_add-place">
@@ -62,13 +64,13 @@
                         name="activity" tabindex="2" type="url" required>
                     <span class="popup__error" id="link-error"></span>
                 </label>
-                <button class="popup__button popup__button_insert popup__button_disabled">Создать</button>
+                <button type="submit" class="popup__button popup__button_insert popup__button_disabled">Создать</button>
             </form>
         </section>
         <section class="popup popup_review">
             <figure class="popup__figure">
                 <button class="popup__toggle  popup__toggle_review" type="button"></button>
-                <img class="popup__image" src="." alt="Картинка">
+                <img class="popup__image" src="#" alt="Картинка">
                 <figcaption class="popup__subtitle"></figcaption>
             </figure>
         </section>
@@ -76,15 +78,12 @@
     <template id="item">
         <li class="elements__element elements__element_add">
             <button class="elements__delete-button" type="button"></button>
-            <img class="elements__image elements__image_add" src="" alt="Картинка">
+            <img class="elements__image elements__image_add" src="#" alt="Картинка">
             <h2 class="elements__title elements__title_add"></h2>
             <button class="elements__button" type="button"></button>
         </li>
     </template>
-    <script type="module" src="./scripts/util.js"></script>
-    <script type="module" src="./scripts/Card.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script>
-    <script type="module" src="./scripts/script.js"></script>
+
 </body>
 
 </html>

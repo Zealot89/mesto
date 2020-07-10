@@ -51,31 +51,31 @@ export function formSubmitHandler(evt) {
   profileActiviti.textContent = activitiInput.value;
   closePopups(popup);
 }
-export function pressEsc(evt) {
-  const popupOpened = document.querySelector(".popup_active");
-  if (evt.keyCode === 27) {
-    closePopups(popupOpened);
-  }
-}
+//export function pressEsc(evt) {
+//  const popupOpened = document.querySelector(".popup_active");
+//  if (evt.keyCode === 27) {
+//    closePopups(popupOpened);
+//  }
+//}
 //закрытие попапа кликом на оверлей
-export function clickOverlay(evt) {
-  if (evt.target.matches(".popup_image"))
-    closePopups(evt.target.closest(".popup_image"));
-  if (evt.target.matches(".popup")) closePopups(evt.target.closest(".popup"));
-}
+//export function clickOverlay(evt) {
+//  if (evt.target.matches(".popup_image"))
+//    closePopups(evt.target.closest(".popup_image"));
+//  if (evt.target.matches(".popup")) closePopups(evt.target.closest(".popup"));
+//}
 //открытие попапов с размещением слушателей
-export function openPopups(popupElement) {
-  popupElement.classList.add("popup_active");
-  document.addEventListener("keydown", pressEsc);
-  saveButton.addEventListener("submit", formSubmitHandler);
-  popupElement.addEventListener("click", clickOverlay);
-  popupElement.addEventListener("submit", formSubmitHandler);
-}
+//export function openPopups(popupElement) {
+//  popupElement.classList.add("popup_active");
+//  document.addEventListener("keydown", pressEsc);
+//  saveButton.addEventListener("submit", formSubmitHandler);
+//  popupElement.addEventListener("click", clickOverlay);
+//  popupElement.addEventListener("submit", formSubmitHandler);
+//}
 //закрытие попапов со снятием слушателей
-export function closePopups(popupElement) {
-  popupElement.classList.remove("popup_active");
-  document.removeEventListener("keydown", pressEsc);
-  saveButton.removeEventListener("submit", formSubmitHandler);
-  popupElement.removeEventListener("click", clickOverlay);
-  popupElement.removeEventListener("submit", formSubmitHandler);
-}
+//export function closePopups(popupElement) {
+//  popupElement.classList.remove("popup_active");
+//  document.removeEventListener("keydown", pressEsc);
+//  saveButton.removeEventListener("submit", formSubmitHandler);
+//  popupElement.removeEventListener("click", clickOverlay);
+//  popupElement.removeEventListener("submit", formSubmitHandler);
+//}
