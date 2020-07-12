@@ -4,7 +4,7 @@
   "description": "Учебный проект учащегося Яндекс Практикума Бобкова Николая",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist && webpack --env.mode=development",
+    "build": "rimraf dist && webpack --env.mode=development",
     "dev": "webpack-dev-server --open --watch"
   },
   "repository": {
