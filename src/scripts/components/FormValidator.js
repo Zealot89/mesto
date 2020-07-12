@@ -14,9 +14,9 @@ export default class FormValidator {
     const submitButton = this._formSelector.querySelector(
       this._submitButtonSelector
     );
-    this._formSelector.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-    });
+    //this._formSelector.addEventListener("submit", (evt) => {
+    //  evt.preventDefault();
+    //});
     //Блокируем кнопку после открытия попапа
     this._toggleButtonState(inputs, submitButton, this._inactiveButtonClass);
 

@@ -38,8 +38,7 @@ export const obj = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
 };
-export const profileName = document.querySelector(".profile__title");
-export const profileActiviti = document.querySelector(".profile__subtitle");
+
 export const nameInput = document.querySelector(".popup__input_name");
-export const activitiInput = document.querySelector(".popup__input_activiti");
+export const activityInput = document.querySelector(".popup__input_activiti");
 export const popup = document.querySelector(".popup");

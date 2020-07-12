@@ -2,13 +2,12 @@ export class Card {
   constructor(name, link, cardSelector, { handleCardClick }) {
     this._name = name;
     this._link = link;
-    this._cardSelector = cardSelector;
+    this._cardTemplate = cardSelector;
     this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
-    const cardElement = this._cardSelector.content.cloneNode(true);
-    return cardElement;
+    return this._cardTemplate.content.cloneNode(true);
   }
 
   generateCard() {
@@ -21,7 +20,26 @@ export class Card {
     ).textContent = this._name;
     return this._element;
   }
+
   _deleteCard(evt) {
+    //Снятие слушателей
+    evt.target
+      .closest(".elements__element")
+      .querySelector(".elements__image_add")
+      .removeEventListener("click", () => {
+        this._handleCardClick(this._name, this._link);
+      });
+
+    evt.target
+      .closest(".elements__element")
+      .querySelector(".elements__button")
+      .removeEventListener("click", this._likeCard);
+
+    evt.target
+      .closest(".elements__element")
+      .querySelector(".elements__delete-button")
+      .removeEventListener("click", this._deleteCard);
+
     evt.target.closest(".elements__element").remove();
   }
 
@@ -31,13 +49,12 @@ export class Card {
 
   //Слушатели
   _setEventListeners() {
-    const image = this._element.querySelector(".elements__image_add");
-    this._image = image;
     //Заполняем попап содержимым карточки
-    this._image.addEventListener("click", () => {
-      this._handleCardClick(this._name, this._link);
-      //*функция-обработчик описывается при создании экземпляра класса в index.js, аргументы this._name и this._link окажутся на месте параметров name и link
-    });
+    this._element
+      .querySelector(".elements__image_add")
+      .addEventListener("click", () => {
+        this._handleCardClick(this._name, this._link);
+      });
 
     //Лайк карточки
     this._element

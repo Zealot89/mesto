@@ -21,6 +21,13 @@ export class PopupWithForm extends Popup {
   close() {
     super.close();
     //this._container.reset();
+
+    //const inputList = Array.from(
+    //  this._container.querySelectorAll(".popup__input")
+    //);
+    //inputList.forEach((item) => {
+    //  item.value = "";
+    //});
   }
   setEventListeners() {
     super.setEventListeners();
