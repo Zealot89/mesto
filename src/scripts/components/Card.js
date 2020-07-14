@@ -1,5 +1,5 @@
 export class Card {
-  constructor(name, link, cardSelector, { handleCardClick }) {
+  constructor(name, link, cardSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._cardTemplate = cardSelector;
@@ -20,6 +20,11 @@ export class Card {
     ).textContent = this._name;
     return this._element;
   }
+  //оставил так потому что это все до чего я смог додуматься, а от стрелочной функции избавиться так и не выходит)
+  // если вам не сложно, не могли бы вы расписать по подробнее как мне быть с этим слушателем.
+  _method() {
+    this._handleCardClick(this._name, this._link);
+  }
 
   _deleteCard(evt) {
     //Снятие слушателей
@@ -27,7 +32,7 @@ export class Card {
       .closest(".elements__element")
       .querySelector(".elements__image_add")
       .removeEventListener("click", () => {
-        this._handleCardClick(this._name, this._link);
+        this._method();
       });
 
     evt.target
@@ -53,7 +58,7 @@ export class Card {
     this._element
       .querySelector(".elements__image_add")
       .addEventListener("click", () => {
-        this._handleCardClick(this._name, this._link);
+        this._method();
       });
 
     //Лайк карточки
