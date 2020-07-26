@@ -106,7 +106,6 @@ export class Api {
       .then((res) => {
         if (!res.ok) return Promise.reject(`Ошибка: ${res.status}`);
         res.json().then((res) => {
-          console.log(res);
           card.querySelector(".elements__like-counter").textContent =
             res.likes.length;
           card
