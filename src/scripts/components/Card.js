@@ -1,60 +1,90 @@
 export class Card {
-  constructor(name, link, cardSelector, handleCardClick) {
+  constructor(
+    { name, link, _id, owner, likes },
+    cardSelector,
+    handleCardClick,
+    isMine,
+    handleCardDelete,
+    handleCardLike,
+    currentUserId
+  ) {
     this._name = name;
     this._link = link;
-    this._cardTemplate = cardSelector;
+    this._cardTemplate = document.querySelector(cardSelector);
     this._handleCardClick = handleCardClick;
+    this._owner = owner;
+    this._id = _id;
+    this._likes = likes;
+    this._isMine = isMine;
+    this._handleCardDelete = handleCardDelete;
+    this._handleCardLike = handleCardLike;
+    this._currentUserId = currentUserId;
   }
 
   _getTemplate() {
-    return this._cardTemplate.content.cloneNode(true);
+    return this._cardTemplate.content
+      .querySelector(".elements__element")
+      .cloneNode(true);
   }
-
+  //
   generateCard() {
     this._element = this._getTemplate();
-    this._setEventListeners();
+    const myLike = this._likes.some((likesItem) => {
+      return likesItem._id === this._currentUserId;
+    });
+    if (myLike) this.likeCard();
+    if (!this._isMine)
+      this._element.querySelector(".elements__delete-button").remove();
+    this._element.querySelector(
+      ".elements__like-counter"
+    ).textContent = this._likes.length;
+    this._element.id = this._id;
+
     this._element.querySelector(".elements__image_add").src = this._link;
     this._element.querySelector(".elements__image_add").alt = this._name;
     this._element.querySelector(
       ".elements__title_add"
     ).textContent = this._name;
+    this._setEventListeners();
     return this._element;
   }
-  //оставил так потому что это все до чего я смог додуматься, а от стрелочной функции избавиться так и не выходит)
-  // если вам не сложно, не могли бы вы расписать по подробнее как мне быть с этим слушателем.
+
   _method() {
     this._handleCardClick(this._name, this._link);
   }
+  // что я только не пробовал чтобы вот это заработало и каждый раз в консоли deleteCard() is not a function, пришлось удалять в колбеке попапа.
+  //deleteCard() {
+  //  if (this._isMine)
+  //    this._element
+  //      .querySelector(".elements__delete-button")
+  //      .removeEventListener("click", this._handleCardDelete);
+  //
+  //  this._element
+  //    .querySelector(".elements__button")
+  //    .removeEventListener("click", this._handleCardLike);
+  //  this._element
+  //    .querySelector(".elements__image_add")
+  //    .removeEventListener("click", () => {
+  //      this._method();
+  //    });
+  //  this._element.remove();
+  //  delete this._element;
+  //}
 
-  _deleteCard(evt) {
-    //Снятие слушателей
-    evt.target
-      .closest(".elements__element")
-      .querySelector(".elements__image_add")
-      .removeEventListener("click", () => {
-        this._method();
-      });
-
-    evt.target
-      .closest(".elements__element")
+  likeCard() {
+    this._element
       .querySelector(".elements__button")
-      .removeEventListener("click", this._likeCard);
-
-    evt.target
-      .closest(".elements__element")
-      .querySelector(".elements__delete-button")
-      .removeEventListener("click", this._deleteCard);
-
-    evt.target.closest(".elements__element").remove();
-  }
-
-  _likeCard(evt) {
-    evt.target.classList.toggle("elements__button_active");
+      .classList.toggle("elements__button_active");
   }
 
   //Слушатели
   _setEventListeners() {
-    //Заполняем попап содержимым карточки
+    //Удаление карточки
+    if (this._isMine)
+      this._element
+        .querySelector(".elements__delete-button")
+        .addEventListener("click", this._handleCardDelete);
+
     this._element
       .querySelector(".elements__image_add")
       .addEventListener("click", () => {
@@ -64,11 +94,6 @@ export class Card {
     //Лайк карточки
     this._element
       .querySelector(".elements__button")
-      .addEventListener("click", this._likeCard);
-
-    //Удаление карточки
-    this._element
-      .querySelector(".elements__delete-button")
-      .addEventListener("click", this._deleteCard);
+      .addEventListener("click", this._handleCardLike);
   }
 }

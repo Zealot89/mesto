@@ -6,9 +6,6 @@ export class Section {
   }
 
   render() {
-    //for (let i = 0; i <= 5; i++) {
-    //  this._renderer(this._initialArray[i]);
-    //}
     this._initialArray.forEach((item) => {
       this._renderer(item);
     });

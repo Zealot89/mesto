@@ -16,8 +16,10 @@
         </header>
         <main class='content'>
             <section class="profile">
-                <img class="profile__avatar" src="./images/батискаф.jpg" alt="Кусто">
-
+                <div class="profile__container">
+                    <button type="button" class="profile__image-button"></button>
+                    <img class="profile__avatar" src="./images/батискаф.jpg" alt="Кусто">
+                </div>
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
                     <p class="profile__subtitle">Исследователь океана</p>
@@ -33,7 +35,8 @@
         <footer class='footer'>
             <p>&copy;2020 Mesto Russia</p>
         </footer>
-        <section class="popup">
+
+        <section class="popup ">
             <form class="popup__form popup__form_profile">
                 <button class="popup__toggle" type="button"></button>
                 <h3 class="popup__title">Редактировать профиль</h3>
@@ -44,7 +47,7 @@
                 </label>
                 <label class="popup__input-wrapper">
                     <input class="popup__input popup__input_activiti" id="activiti" placeholder="Род занятий"
-                        name="activity" tabindex="2" type="text" minlength="2" maxlength="200" required>
+                        name="about" tabindex="2" type="text" minlength="2" maxlength="200" required>
                     <span class="popup__error" id="activiti-error"></span>
                 </label>
                 <button type="submit" class="popup__button">Сохранить</button>
@@ -60,11 +63,30 @@
                     <span class="popup__error" id="name-card-error"></span>
                 </label>
                 <label class="popup__input-wrapper">
-                    <input class="popup__input popup__input_link" id="link" placeholder="Ссылка на картинку"
-                        name="activity" tabindex="2" type="url" required>
+                    <input class="popup__input popup__input_link" id="link" placeholder="Ссылка на картинку" name="link"
+                        tabindex="2" type="url" required>
                     <span class="popup__error" id="link-error"></span>
                 </label>
                 <button type="submit" class="popup__button popup__button_insert popup__button_disabled">Создать</button>
+            </form>
+        </section>
+        <section class="popup popup__avatar">
+            <form class="popup__form popup__form_avatar">
+                <button class="popup__toggle" type="button"></button>
+                <h3 class="popup__title">Обновить аватар</h3>
+                <label class="popup__input-wrapper">
+                    <input class="popup__input popup__input_link-avatar" id="link" placeholder="Ссылка на картинку"
+                        name="link" tabindex="2" type="url" required>
+                    <span class="popup__error" id="link-error"></span>
+                </label>
+                <button type="submit" class="popup__button popup__button_insert popup__button_disabled">Создать</button>
+            </form>
+        </section>
+        <section class="popup popup__delete ">
+            <form class="popup__form popup__form_delete">
+                <button class="popup__toggle" type="button"></button>
+                <h3 class="popup__title">Вы уверены?</h3>
+                <button type="submit" class="popup__button">Да</button>
             </form>
         </section>
         <section class="popup popup_review">
@@ -76,11 +98,12 @@
         </section>
     </div>
     <template id="item">
-        <li class="elements__element elements__element_add">
+        <li class="elements__element elements__element_add " id="">
             <button class="elements__delete-button" type="button"></button>
             <img class="elements__image elements__image_add" src="#" alt="Картинка">
             <h2 class="elements__title elements__title_add"></h2>
             <button class="elements__button" type="button"></button>
+            <p class="elements__like-counter">0</p>
         </li>
     </template>
 

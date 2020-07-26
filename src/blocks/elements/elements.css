@@ -6,7 +6,9 @@
 @import url("./__list/elements__list.css");
 @import url("./__title/elements__title.css");
 @import url("./__delete-button/elements__delete-button.css");
+@import url("./__like-counter/elements__like-counter.css");
 .elements {
+  position: relative;
   max-width: 882px;
   margin: auto;
   margin-bottom: 66px;

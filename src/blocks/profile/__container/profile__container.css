@@ -1,0 +1,8 @@
+.profile__container {
+  height: 120px;
+  width: 120px;
+  padding: 0px;
+  background-color: transparent;
+  border: none;
+  position: relative;
+}

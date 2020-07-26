@@ -1,0 +1,18 @@
+.profile__image-button {
+  display: block;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  z-index: 1;
+  border: none;
+  outline: none;
+}
+.profile__image-button:hover {
+  background-image: url("../../../images/Vector22.png");
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+}
