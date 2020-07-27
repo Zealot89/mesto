@@ -8,14 +8,10 @@ export class Api {
       headers: {
         authorization: this.token,
       },
-    })
-      .then((res) => {
-        if (res.ok) return res.json();
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }).then((res) => {
+      if (res.ok) return res.json();
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
   }
 
   getUserData(func) {
@@ -33,9 +29,6 @@ export class Api {
       .then((res) => {
         func(res.name, res.about, res.avatar);
         return res;
-      })
-      .catch((err) => {
-        console.log(err);
       });
   }
 
@@ -50,13 +43,9 @@ export class Api {
         name: name,
         about: about,
       }),
-    })
-      .then((res) => {
-        if (!res.ok) return Promise.reject(`Ошибка: ${res.status}`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }).then((res) => {
+      if (!res.ok) return Promise.reject(`Ошибка: ${res.status}`);
+    });
   }
 
   saveCardData({ name, link }) {
@@ -70,14 +59,10 @@ export class Api {
         name: name,
         link: link,
       }),
-    })
-      .then((res) => {
-        if (!res.ok) return Promise.reject(`Ошибка: ${res.status}`);
-        return res.json();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }).then((res) => {
+      if (!res.ok) return Promise.reject(`Ошибка: ${res.status}`);
+      return res.json();
+    });
   }
 
   deleteCardData(cardId) {
@@ -102,24 +87,19 @@ export class Api {
         authorization: this.token,
         "Content-Type": "application/json",
       },
-    })
-      .then((res) => {
-        if (!res.ok) return Promise.reject(`Ошибка: ${res.status}`);
-        res.json().then((res) => {
-          card.querySelector(".elements__like-counter").textContent =
-            res.likes.length;
-          card
-            .querySelector(".elements__button")
-            .classList.toggle("elements__button_active");
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    }).then((res) => {
+      if (!res.ok) return Promise.reject(`Ошибка: ${res.status}`);
+      res.json().then((res) => {
+        card.querySelector(".elements__like-counter").textContent =
+          res.likes.length;
+        card
+          .querySelector(".elements__button")
+          .classList.toggle("elements__button_active");
       });
+    });
   }
 
   changeAvatar(url) {
-    console.log(url);
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
@@ -129,13 +109,9 @@ export class Api {
       body: JSON.stringify({
         avatar: url.link,
       }),
-    })
-      .then((res) => {
-        if (!res.ok) return Promise.reject(`Ошибка: ${res.status}`);
-        return res.json();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }).then((res) => {
+      if (!res.ok) return Promise.reject(`Ошибка: ${res.status}`);
+      return res.json();
+    });
   }
 }

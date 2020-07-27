@@ -49,17 +49,17 @@ profileFormValidation.enableValidation();
 //Экземпляр попапа удаления карточки
 const popupConfirm = new PopupWidthConfirm(confPop, (evt, example) => {
   evt.preventDefault();
-  popupConfirm._popupSelector.querySelector(".popup__button").textContent =
-    "Сохранение...";
+  const confirmButton = popupConfirm._popupSelector.querySelector(
+    ".popup__button"
+  );
+  confirmButton.textContent = "Сохранение...";
   api
     .deleteCardData(example.id)
     .then(() => {
       example.remove();
     })
     .finally(() => {
-      popupConfirm._popupSelector.querySelector(".popup__button").textContent =
-        "Ок";
-
+      confirmButton.textContent = "Ок";
       popupConfirm.close();
     });
 });
@@ -92,43 +92,56 @@ api
   .then((currentUser) => {
     document.querySelector(".profile__avatar").src = currentUser.avatar;
     //загрузка и отрисовка начального массива карточек с сервера
-    api.getInitialCards().then((initialCards) => {
-      initialCards.reverse();
-      cards = new Section(
-        {
-          items: initialCards,
-          renderer: function (item) {
-            const card = new Card(
-              item,
-              "#item",
-              () => {
-                handleCardClick(item);
-              },
-              currentUser._id === item.owner._id,
-              () => popupConfirm.confirm(card),
-              () => api.likeCard(currentUser, item, card),
+    api
+      .getInitialCards()
+      .then((initialCards) => {
+        initialCards.reverse();
+        cards = new Section(
+          {
+            items: initialCards,
+            renderer: function (item) {
+              const card = new Card(
+                item,
+                "#item",
+                () => {
+                  handleCardClick(item);
+                },
+                currentUser._id === item.owner._id,
+                () => popupConfirm.confirm(card),
+                () => api.likeCard(currentUser, item, card),
 
-              currentUser._id
-            ).generateCard();
+                currentUser._id
+              ).generateCard();
 
-            cards.addItem(card);
+              cards.addItem(card);
+            },
           },
-        },
-        ".elements__list"
-      );
+          ".elements__list"
+        );
 
-      cards.render();
-    });
+        cards.render();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+  .catch((err) => {
+    console.log(err);
   });
 //экземпляр попапа аватарки
 const newAvatarPopup = new PopupWithForm(avatarPopup, (value) => {
-  avatarPopup.querySelector(".popup__button").textContent = "Сохранение...";
+  const newAvatarButton = newAvatarPopup._popupSelector.querySelector(
+    ".popup__button"
+  );
+  newAvatarButton.textContent = "Сохранение...";
   api
     .changeAvatar(value)
     .then((res) => {
       document.querySelector(".profile__avatar").src = res.avatar;
-
-      avatarPopup.querySelector(".popup__button").textContent = "Создать";
+      newAvatarButton.textContent = "Создать";
+    })
+    .catch((err) => {
+      console.log(err);
     })
     .finally(() => {
       newAvatarPopup.close();
@@ -138,25 +151,32 @@ newAvatarPopup.setEventListeners();
 
 //экземпляр класа попапа добавления карточки с колбэком самого добавления
 const newAddPopup = new PopupWithForm(addPopup, (values) => {
+  const newAddButton = newAddPopup._popupSelector.querySelector(
+    ".popup__button"
+  );
   api
     .saveCardData(values)
     .then((res) => {
-      newAddPopup._popupSelector.querySelector(".popup__button").textContent =
-        "Сохранeние...";
+      newAddButton.textContent = "Сохранeние...";
       const card = new Card(
         res,
         "#item",
         () => {
-          handleCardClick(item);
+          handleCardClick(res);
         },
         true,
         () => popupConfirm.confirm(card),
-        () => api.likeCard(res.owner, res, card),
+        () =>
+          api.likeCard(res.owner, res, card).catch((err) => {
+            console.log(err);
+          }),
         res.owner._id
       ).generateCard();
-      newAddPopup._popupSelector.querySelector(".popup__button").textContent =
-        "Cоздать";
+      newAddButton.textContent = "Cоздать";
       cards.addItem(card);
+    })
+    .catch((err) => {
+      console.log(err);
     })
     .finally(() => {
       newAddPopup.close();
@@ -166,15 +186,22 @@ newAddPopup.setEventListeners();
 
 //экземпляр класа попапа профиля с колбэком
 const newEditPopup = new PopupWithForm(popup, (values) => {
-  console.log(newEditPopup);
-  newEditPopup._popupSelector.querySelector(".popup__button").textContent =
-    "Сохранение...";
-  api.saveUserData(values).then(() => {
-    newUserInfo.setUserInfo(values);
-    newEditPopup._popupSelector.querySelector(".popup__button").textContent =
-      "Сохранить";
-  });
-  newEditPopup.close();
+  const newEditButton = newEditPopup._popupSelector.querySelector(
+    ".popup__button"
+  );
+  newEditButton.textContent = "Сохранение...";
+  api
+    .saveUserData(values)
+    .then(() => {
+      newUserInfo.setUserInfo(values);
+      newEditButton.textContent = "Сохранить";
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      newEditPopup.close();
+    });
 });
 newEditPopup.setEventListeners();
 
@@ -188,7 +215,6 @@ editButton.addEventListener("click", () => {
 addButton.addEventListener("click", () => {
   entryFieldLocations.value = "";
   inputFieldLinks.value = "";
-
   newAddPopup.open();
 });
 //слушатель открытия попапа аватара
