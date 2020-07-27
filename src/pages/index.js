@@ -48,7 +48,6 @@ profileFormValidation.enableValidation();
 
 //Экземпляр попапа удаления карточки
 const popupConfirm = new PopupWidthConfirm(confPop, (evt, example) => {
-  console.log(popupConfirm);
   evt.preventDefault();
   popupConfirm._popupSelector.querySelector(".popup__button").textContent =
     "Сохранение...";
@@ -56,13 +55,11 @@ const popupConfirm = new PopupWidthConfirm(confPop, (evt, example) => {
     .deleteCardData(example.id)
     .then(() => {
       example.remove();
-      () => {
-        popupConfirm._popupSelector.querySelector(
-          ".popup__button"
-        ).textContent = "Ок";
-      };
     })
     .finally(() => {
+      popupConfirm._popupSelector.querySelector(".popup__button").textContent =
+        "Ок";
+
       popupConfirm.close();
     });
 });

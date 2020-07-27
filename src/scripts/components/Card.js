@@ -58,17 +58,17 @@ export class Card {
   //    this._element
   //      .querySelector(".elements__delete-button")
   //      .removeEventListener("click", this._handleCardDelete);
-  //
-  //  this._element
-  //    .querySelector(".elements__button")
-  //    .removeEventListener("click", this._handleCardLike);
-  //  this._element
-  //    .querySelector(".elements__image_add")
-  //    .removeEventListener("click", () => {
-  //      this._method();
-  //    });
-  //  this._element.remove();
-  //  delete this._element;
+
+  //   this._element
+  //     .querySelector(".elements__button")
+  //     .removeEventListener("click", this._handleCardLike);
+  //   this._element
+  //     .querySelector(".elements__image_add")
+  //     .removeEventListener("click", () => {
+  //       this._method();
+  //     });
+  //  //this._element.remove();
+  //  //delete this._element;
   //}
 
   likeCard() {
